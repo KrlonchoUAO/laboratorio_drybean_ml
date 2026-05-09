@@ -1,0 +1,22 @@
+# Normalizar line endings automáticamente (TDSP best practice en Windows)
+* text=auto
+
+# Python — siempre LF
+*.py text eol=lf
+*.ipynb text eol=lf
+
+# Markdown y texto — siempre LF
+*.md text eol=lf
+*.txt text eol=lf
+*.csv text eol=lf
+
+# PowerShell — CRLF en Windows
+*.ps1 text eol=crlf
+
+# Binarios — sin conversión
+*.joblib binary
+*.png binary
+*.jpg binary
+*.pdf binary
+*.xlsx binary
+*.zip binary
