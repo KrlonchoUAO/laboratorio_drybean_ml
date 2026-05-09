@@ -5,7 +5,7 @@ Script Python reutilizable — Clasificación de variedades de frijol seco
 Dry Bean Dataset | UCI ML Repository | id=602
 
 Metodologías: CRISP-DM + TDSP + Scrum ML
-Autor: Carlos García (UAO — Maestría IA y CD)
+Autor: Carlos Garzón | Jhony Posada (UAO — Maestría IA y CD)
 Fecha: Mayo 2026
 
 Uso:

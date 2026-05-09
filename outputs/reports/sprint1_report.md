@@ -4,7 +4,7 @@
 **Metodologías:** CRISP-DM + TDSP + Scrum ML  
 **Sprint:** 1 de 3  
 **Fecha:** Mayo 2026  
-**Equipo:** Carlos García (todos los roles)
+**Equipo:** Carlos Garzón | Jhony Posada
 
 ---
 
@@ -21,8 +21,8 @@
 
 | Integrante | ¿Qué hice? | ¿Qué haré? | ¿Bloqueos? |
 |------------|-----------|-----------|-----------|
-| Carlos (Data Engineer) | Configuré el entorno virtual y la estructura TDSP | Cargar y explorar el dataset | Ninguno |
-| Carlos (Data Analyst) | Cargué el dataset desde UCI (id=602) | Analizar calidad y distribución | Ninguno |
+| Jhony (Data Engineer) | Configuré el entorno virtual y la estructura TDSP | Cargar y explorar el dataset | Ninguno |
+| Jhony (Data Analyst) | Cargué el dataset desde UCI (id=602) | Analizar calidad y distribución | Ninguno |
 | Carlos (Scrum Master) | Definí el backlog y los criterios de aceptación | Preparar el split train/test | Ninguno |
 
 ---
@@ -47,7 +47,7 @@
 | Variable objetivo | `Class` (string) |
 | Clases | 7 variedades |
 | Valores nulos | **0** (dataset limpio) |
-| Filas duplicadas | **0** |
+| Filas duplicadas | **68** |
 
 #### Variables del dataset
 
@@ -72,15 +72,14 @@
 
 | Clase | Instancias | % |
 |-------|-----------|---|
-| DERMASON | ~3,546 | ~26.1% |
-| SIRA | ~2,636 | ~19.4% |
-| SEKER | ~2,027 | ~14.9% |
-| HOROZ | ~1,928 | ~14.2% |
+| DERMASON | ~3,546 | ~26.2% |
+| SIRA | ~2,636 | ~19.5% |
+| SEKER | ~2,027 | ~15.0% |
+| HOROZ | ~1,860 | ~13.7% |
 | CALI | ~1,630 | ~12.0% |
-| BARBUNYA | ~1,322 | ~9.7% |
-| BOMBAY | ~522 | ~3.8% |
+| BARBUNYA | ~1,322 | ~9.8% |
+| BOMBAY | ~522 | ~3.9% |
 
-> **Actualizar con valores exactos tras ejecutar el notebook.**
 
 ---
 

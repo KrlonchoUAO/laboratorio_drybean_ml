@@ -8,12 +8,11 @@
 
 | Rol | Responsable | Responsabilidades |
 |-----|-------------|-------------------|
-| **Product Owner** | Carlos García | Define el valor del modelo, valida que el clasificador cumpla el objetivo de negocio |
-| **Scrum Master** | Carlos García | Coordina sprints, elimina bloqueos, gestiona el tablero |
-| **Data Engineer / Analyst** | Carlos García | Descarga, limpia y explora el dataset; prepara pipelines de datos |
-| **ML Engineer** | Carlos García | Entrena, evalúa y compara modelos; guarda artefactos |
+| **Product Owner** | Carlos Garzon | Define el valor del modelo, valida que el clasificador cumpla el objetivo de negocio |
+| **Scrum Master** | Carlos Garzon | Coordina sprints, elimina bloqueos, gestiona el tablero |
+| **Data Engineer / Analyst** | Jhony Posada | Descarga, limpia y explora el dataset; prepara pipelines de datos |
+| **ML Engineer** | Jhony Posada | Entrena, evalúa y compara modelos; guarda artefactos |
 
-> Laboratorio ejecutado en modalidad individual simulando todos los roles Scrum ML.
 
 ---
 
