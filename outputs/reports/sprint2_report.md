@@ -3,7 +3,7 @@
 **Proyecto:** Clasificación de variedades de frijol seco — Dry Bean Dataset  
 **Sprint:** 2 de 3  
 **Fecha:** Mayo 2026  
-**Responsable:** Carlos García — rol ML Engineer
+**Responsable:** Jhony Posada — rol ML Engineer
 
 ---
 
@@ -40,29 +40,26 @@
 
 ## 3. Resultados de Evaluación
 
-> **Nota:** Los valores siguientes son representativos del comportamiento esperado del dataset según la literatura. Actualiza con los valores reales tras ejecutar el notebook.
-
 ### Comparación de Métricas
 
 | Modelo | Accuracy | F1-macro | Tiempo estimado |
 |--------|----------|----------|----------------|
-| Logistic Regression (baseline) | ~91.5% | ~0.914 | < 5 seg |
-| **Random Forest (seleccionado)** | **~92.8%** | **~0.926** | ~30-60 seg |
-| Mejora sobre baseline | +1.3% | +0.012 | — |
+| **Logistic Regression (baseline)** | **91.95%** | **0.9306** | < 5 seg |
+| Random Forest | 91.92% | 0.9302 | ~30-60 seg |
+| Diferencia RF vs baseline | -0.03 pp | -0.0004 | — |
 
-> Llena esta tabla con los valores exactos que obtengas al correr el notebook.
 
 ### Reporte por clase — Random Forest
 
 | Clase | Precisión | Recall | F1 | Soporte |
 |-------|-----------|--------|-----|---------|
-| BARBUNYA | ~0.93 | ~0.92 | ~0.93 | ~264 |
-| BOMBAY | ~0.99 | ~0.99 | ~0.99 | ~104 |
-| CALI | ~0.91 | ~0.92 | ~0.92 | ~326 |
-| DERMASON | ~0.93 | ~0.94 | ~0.93 | ~709 |
-| HOROZ | ~0.94 | ~0.94 | ~0.94 | ~386 |
-| SEKER | ~0.94 | ~0.95 | ~0.94 | ~405 |
-| SIRA | ~0.90 | ~0.90 | ~0.90 | ~527 |
+| BARBUNYA | 0.92 | 0.89 | 0.90 | 265 |
+| BOMBAY | 1.00 | 1.00 | 1.00 | 104 |
+| CALI | 0.92 | 0.94 | 0.93 | 326 |
+| DERMASON | 0.91 | 0.92 | 0.92 | 709 |
+| HOROZ | 0.96 | 0.94 | 0.95 | 372 |
+| SEKER | 0.94 | 0.95 | 0.95 | 406 |
+| SIRA | 0.87 | 0.86 | 0.86 | 527 |
 
 ---
 
@@ -71,7 +68,7 @@
 ### Hallazgos principales
 
 **Clase bien clasificada:**
-- **BOMBAY** — alta separabilidad (granos notablemente más grandes y redondos que el resto). F1 ~0.99. La variable `Area` y `MajorAxisLength` la distinguen claramente.
+- **BOMBAY** — alta separabilidad (granos notablemente más grandes y redondos que el resto). F1 1.00. La variable `Area` y `MajorAxisLength` la distinguen claramente.
 
 **Clases con más confusiones:**
 - **SIRA ↔ DERMASON** — son morfológicamente similares (tamaño mediano, forma elíptica). La varianza en sus features geométricas se solapa. Este es el principal error del modelo.
@@ -84,19 +81,15 @@ Las confusiones ocurren entre clases con `AspectRatio` y `Eccentricity` similare
 
 ## 5. Importancia de Variables
 
-> Orden típico para este dataset (confirmar con tu ejecución):
-
 | Rank | Variable | Importancia aprox. |
 |------|----------|--------------------|
-| 1 | ShapeFactor1 | ~0.18 |
-| 2 | MajorAxisLength | ~0.14 |
-| 3 | Eccentricity | ~0.12 |
-| 4 | Compactness | ~0.10 |
-| 5 | ShapeFactor2 | ~0.09 |
+| 1 | Perimeter | 0.111 |
+| 2 | ShapeFactor1 | 0.106 |
+| 3 | Compactness | 0.099 |
+| 4 | ShapeFactor3 | 0.093 |
+| 5 | MinorAxisLength | 0.081 |
 
 **Interpretación:** Las variables de **forma** (ShapeFactors, Eccentricity, Compactness) son más discriminativas que las de **tamaño absoluto** (Area, Perimeter). Esto tiene sentido: la forma del grano es más característica de la variedad que su tamaño, que puede variar con las condiciones de cultivo.
-
-> ⚠️ Advertencia TDSP: la importancia en Random Forest mide correlación con la predicción, NO causalidad. No implica que ShapeFactor1 "cause" la variedad de frijol.
 
 ---
 
@@ -105,12 +98,15 @@ Las confusiones ocurren entre clases con `AspectRatio` y `Eccentricity` similare
 **¿El modelo cumple el criterio de éxito?**
 
 - Criterio definido por Product Owner: F1-macro ≥ 0.90
-- Resultado Random Forest: F1-macro ≈ 0.926
+- Resultado Random Forest: F1-macro ≈ 0.930
 - **✅ Criterio cumplido.** El modelo pasa a Sprint 3 (Despliegue).
 
 **¿Se usa el modelo más complejo o el más simple?**
 
-Random Forest supera al baseline en F1-macro con una mejora significativa (+0.012), justificando su mayor complejidad. Si la mejora hubiera sido < 0.005, habríamos preferido Logistic Regression por parsimonia.
+Logistic Regression supera marginalmente a Random Forest en F1-macro (0.9306 vs 0.9302). La diferencia es prácticamente nula (0.0004) y ambos modelos cumplen el criterio de éxito. Se selecciona Random Forest para producción por razones prácticas:
+- No requiere escalado de features (más robusto ante datos nuevos sin preprocesar).
+- Permite extracción de importancia de variables (explicabilidad ante el negocio).
+- Su rendimiento es estadísticamente equivalente al baseline.
 
 ---
 
@@ -168,7 +164,7 @@ SIRA y DERMASON. Su explicación: comparten rangos similares de `AspectRatio` (~
 | PB-03 | Entrenar Logistic Regression | Alta | ✅ |
 | PB-04 | Entrenar Random Forest | Media | ✅ |
 | PB-05 | Comparar métricas | Alta | ✅ |
-| PB-06 | Crear README profesional | Alta | ✅ |
+| PB-06 | Crear README profesional | Alta | 🔲 Pendiente |
 | PB-07 | Guardar modelo con joblib | Alta | 🔲 Pendiente |
 | PB-08 | Función de predicción reutilizable | Media | 🔲 Pendiente |
 | PB-09 | Documentar proyecto completo | Alta | 🔲 Pendiente |
