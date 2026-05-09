@@ -88,10 +88,10 @@
 #### Decisiones técnicas tomadas
 
 1. **Sin imputación de nulos** — el dataset no tiene valores faltantes.
-2. **Sin eliminación de duplicados** — no se detectaron filas duplicadas.
+2. **68 filas duplicadas** — se encontraron 68 filas duplicadas y se eliminaron.
 3. **Split estratificado 80/20** con `random_state=42`:
-   - Train: ~10,889 instancias
-   - Test: ~2,722 instancias
+   - Train: ~10,834 instancias
+   - Test: ~2,709 instancias
    - `stratify=y` preserva proporciones de clases en ambos conjuntos.
 
 #### Justificación del random_state=42 (TDSP)
@@ -102,7 +102,7 @@ El uso de `random_state=42` garantiza **reproducibilidad**: cualquier persona qu
 
 ## 4. Desbalance de Clases — Análisis
 
-**Hallazgo crítico:** BOMBAY representa solo el 3.8% de las instancias vs DERMASON con 26.1%. Esto es **desbalance 7:1** entre la clase minoritaria y la mayoritaria.
+**Hallazgo crítico:** BOMBAY representa solo el 3.9% de las instancias vs DERMASON con 26.2%. Esto es **desbalance 7:1** entre la clase minoritaria y la mayoritaria.
 
 **Implicaciones para el modelado:**
 - Usar **F1-macro** como métrica principal (no accuracy)
